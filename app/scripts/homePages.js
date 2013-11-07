@@ -1,4 +1,4 @@
-angular.module('myApp.homePages', ['myApp.config', 'ngRoute'])
+angular.module('myApp.homePages', ['myApp.config', 'myApp.channels', 'ngRoute'])
 
   .config(function($routeProvider, TPL_PATH) {
     $routeProvider.when('/', {
@@ -7,7 +7,14 @@ angular.module('myApp.homePages', ['myApp.config', 'ngRoute'])
     });
   })
 
-  .controller('HomeCtrl', function($scope, $http, API_PATH) {
+  .controller('HomeCtrl', function($scope, $http, API_PATH, userChannel) {
+    userChannel.bind('create', function() {
+      alert('user created');
+    });
+    userChannel.bind('destroy', function() {
+      alert('user destroyed');
+    });
+
     $http.get(API_PATH + '/featured_users?limit=1')
       .success(function(data) {
         $scope.featured_user = data.featured_users[0];

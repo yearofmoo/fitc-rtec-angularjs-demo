@@ -10,11 +10,11 @@ class FeaturedUser < ActiveRecord::Base
 
   def pusher_create
     AppPusher.send('user', 'featured-add', self.user.to_json)
-    AppPusher.send('featured', 'create', self.to_json)
+    AppPusher.send('featured_user', 'create', self.to_json)
   end
 
   def pusher_destroy
     AppPusher.send('user', 'featured-remove', self.user.to_json)
-    AppPusher.send('featured', 'destroy', self.to_json)
+    AppPusher.send('featured_user', 'destroy', self.to_json)
   end
 end
