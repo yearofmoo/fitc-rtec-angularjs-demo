@@ -1,1 +1,1 @@
-angular.module('myApp', ['myApp.homePages']);
+angular.module('myApp', ['myApp.homePages','myApp.profilePages','myApp.commentPages']);

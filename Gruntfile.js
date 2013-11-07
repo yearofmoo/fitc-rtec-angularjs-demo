@@ -124,6 +124,8 @@ module.exports = function(grunt) {
           'lib/angularjs-1.2.0/angular-animate.js',
           'app/scripts/config.js',
           'app/scripts/homePages.js',
+          'app/scripts/profilePages.js',
+          'app/scripts/commentPages.js',
           'app/scripts/app.js',
         ]
       },

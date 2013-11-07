@@ -2,11 +2,12 @@ class User < ActiveRecord::Base
   has_many :comments
 
   has_attached_file :avatar, :styles => {
+      :large => "600x600>",
       :medium => "300x300>",
       :thumb => "100x100>"
     },
-    :path => 'public/storage/:class/:attachment/:id_partition/:filename',
-    :url => 'http://localhost:3000/storage/:class/:attachment/:id_partition/:filename',
+    :path => 'public/storage/:class/:attachment/:id_partition/:style_:filename',
+    :url => 'http://localhost:3000/storage/:class/:attachment/:id_partition/:style_:filename',
     :default_url => "/images/:style/missing.png"
 
   after_save :publish_to_pusher

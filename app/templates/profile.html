@@ -1,7 +1,6 @@
-<div ng-repeat="user in users" class="user-listing">
-  <h4>
-    <a ng-href="#/users/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a>
-  </h4>
+<div>
+  <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+  <img ng-src="{{ user.avatar.large }}" />
   <ul class="user-details">
     <li>
       Location: {{ user.location }}
