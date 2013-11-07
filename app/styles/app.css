@@ -1,0 +1,22 @@
+.navbar {
+  margin-bottom:0;
+}
+.avatar-listing {
+  float:left; 
+  border:1px solid #ddd;
+  margin:2px;
+}
+.avatar-listing a {
+  display:block;
+  height:124px;
+  overflow:hidden;
+}
+.align-right {
+  text-align:right;
+}
+
+.search-toggles {
+  padding:10px;
+  background:#eee;
+  margin-bottom:2em;
+}

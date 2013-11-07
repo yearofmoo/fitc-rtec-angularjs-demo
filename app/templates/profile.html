@@ -1,32 +1,34 @@
-<div>
-  <h4>{{ user.first_name }} {{ user.last_name }}</h4>
-  <img ng-src="{{ user.avatar.large }}" />
-  <ul class="user-details">
-    <li>
-      Location: {{ user.location }}
-    </li>
-    <li>
-      Age: {{ user.age }}
-    </li>
-    <li>
-      Email: {{ user.email }}
-    </li>
-  </ul>
-  <p>
-    {{ user.info }}
-  </p>
-</div>
+<div class="row">
+  <div>
+    <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+    <img ng-src="{{ user.avatar.large }}" />
+    <ul class="user-details">
+      <li>
+        Location: {{ user.location }}
+      </li>
+      <li>
+        Age: {{ user.age }}
+      </li>
+      <li>
+        Email: {{ user.email }}
+      </li>
+    </ul>
+    <p>
+      {{ user.info }}
+    </p>
+  </div>
 
-<div ng-repeat="comment in comments" class="comment-listing">
-  <h4>
-    <a ng-href="#/users/{{ comment.user.id }}">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
-  </h4>
-  <img ng-src="{{ comment.visitor.avatar.thumb }}" />
-  <p>
-    {{ comment.user.first_name }} {{ comment.user.last_name }} to
-    {{ comment.visitor.first_name }} {{ comment.visitor.last_name }}
-  </p>
-  <p>
-    {{ comment.message }}
-  </p>
+  <div ng-repeat="comment in comments" class="comment-listing">
+    <h4>
+      <a ng-href="#/users/{{ comment.user.id }}">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
+    </h4>
+    <img ng-src="{{ comment.visitor.avatar.thumb }}" />
+    <p>
+      {{ comment.user.first_name }} {{ comment.user.last_name }} to
+      {{ comment.visitor.first_name }} {{ comment.visitor.last_name }}
+    </p>
+    <p>
+      {{ comment.message }}
+    </p>
+  </div>
 </div>

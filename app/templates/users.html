@@ -1,19 +1,17 @@
-<div ng-repeat="user in users" class="user-listing">
-  <h4>
-    <a ng-href="#/users/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a>
-  </h4>
-  <ul class="user-details">
-    <li>
-      Location: {{ user.location }}
-    </li>
-    <li>
-      Age: {{ user.age }}
-    </li>
-    <li>
-      Email: {{ user.email }}
-    </li>
-  </ul>
-  <p>
-    {{ user.info }}
-  </p>
+<div class="search-toggles">
+  <div class="row">
+    <div class="three columns">
+      {{ users.length }} users found
+    </div>
+    <div class="nine columns align-right">
+      <input type="search" ng-model="q" />
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div ng-repeat="user in users | filter:q" class="avatar-listing">
+    <a ng-href="#/users/{{ user.id }}">
+      <img ng-src="{{ user.avatar.medium }}" />
+    </a>
+  </div>
 </div>

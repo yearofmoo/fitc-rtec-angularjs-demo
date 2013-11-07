@@ -15,12 +15,12 @@ class Comment < ActiveRecord::Base
   end
 
   def publish_to_pusher
-    AppPusher.send('users/' + self.user_id.to_s + '/comments', Comment.find_user_comments(self.user_id).to_json)
-    publish_all_to_pusher
+    #AppPusher.send('users/' + self.user_id.to_s + '/comments', Comment.find_user_comments(self.user_id).to_json)
+    #publish_all_to_pusher
   end
 
   def publish_all_to_pusher
-    AppPusher.send('comments', Comment.scoped.to_json)
+    #AppPusher.send('comments', Comment.scoped.to_json)
   end
 
 end
