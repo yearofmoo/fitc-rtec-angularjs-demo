@@ -15,3 +15,14 @@
     {{ user.info }}
   </p>
 </div>
+
+<div ng-repeat="comment in comments" class="comment-listing">
+  <h1>{{ comment.user.first_name }} {{ comment.user.last_name }}</h1>
+  <p>
+    {{ comment.user.first_name }} {{ comment.user.last_name }} to
+    {{ comment.visitor.first_name }} {{ comment.visitor.last_name }}
+  </p>
+  <p>
+    {{ comment.message }}
+  </p>
+</div>

@@ -12,4 +12,9 @@ angular.module('myApp.homePages', ['myApp.config', 'ngRoute'])
       .success(function(data) {
         $scope.users = data.users;
       });
+
+    $http.get(API_PATH + '/comments')
+      .success(function(data) {
+        $scope.comments = data.comments;
+      });
   });
