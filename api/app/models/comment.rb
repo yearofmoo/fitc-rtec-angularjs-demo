@@ -28,17 +28,17 @@ class Comment < ActiveRecord::Base
 
   def pusher_create
     AppPusher.send('comment', 'create', self.to_listing_json) unless @skip_pusher == true
-    AppPusher.send('user/' + self.user_id.to_s + '/comments', 'create', self.to_listing_json) unless @skip_pusher == true
+    AppPusher.send('user-' + self.user_id.to_s + '-comments', 'create', self.to_listing_json) unless @skip_pusher == true
   end
 
   def pusher_update
     AppPusher.send('comment', 'update', self.to_listing_json) unless @skip_pusher == true
-    AppPusher.send('user/' + self.user_id.to_s + '/comments', 'destroy', self.to_listing_json) unless @skip_pusher == true
+    AppPusher.send('user-' + self.user_id.to_s + '-comments', 'destroy', self.to_listing_json) unless @skip_pusher == true
   end
 
   def pusher_destroy
     AppPusher.send('comment', 'destroy', self.to_listing_json) unless @skip_pusher == true
-    AppPusher.send('user/' + self.user_id.to_s + '/comments', 'update', self.to_listing_json) unless @skip_pusher == true
+    AppPusher.send('user-' + self.user_id.to_s + '-comments', 'update', self.to_listing_json) unless @skip_pusher == true
   end
 
 end

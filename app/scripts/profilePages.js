@@ -32,7 +32,7 @@ angular.module('myApp.profilePages', ['myApp.config', 'ngRoute'])
       });
   })
 
-  .controller('ProfileCtrl', function($scope, $http, API_PATH, user) {
+  .controller('ProfileCtrl', function($scope, $http, API_PATH, user, pusherChannel) {
     $scope.user = user;
     var userID = user.id;
 
@@ -40,4 +40,16 @@ angular.module('myApp.profilePages', ['myApp.config', 'ngRoute'])
       .success(function(data) {
         $scope.comments = data.comments;
       });
+
+    var userComments = pusherChannel('user-' + userID + '-comments');
+    userComments.bind('create', function(comment) {
+      $scope.$apply(function() {
+        $scope.comments.push(comment);
+      });
+    });
+    userComments.bind('destroy', function(comment) {
+      $scope.$apply(function() {
+        $scope.comments = modifyCollection($scope.comments, comment, 'destroy');
+      });
+    });
   });

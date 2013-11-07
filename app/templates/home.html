@@ -1,10 +1,5 @@
-<div class="search-toggles">
-  <div class="row">
-    <h3>Featured Users</h3>
-  </div>
-</div>
-<div class="row section" ng-if="featured_user">
-  <div>
+<script type="text/ng-template" id="featured-user">
+  <div ng-if="featured_user">
     <a href="#/users/{{ featured_user.id }}">
       <img ng-src="{{ featured_user.picture.large }}" />
     </a>
@@ -23,7 +18,14 @@
       {{ featured_user.info }}
     </p>
   </div>
+</script>
+<div class="search-toggles">
+  <div class="row">
+    <h3>Featured Users</h3>
+  </div>
 </div>
+<div class="row section" featured-user></div>
+
 <div class="search-toggles">
   <div class="row">
     <h3>New Users</h3>

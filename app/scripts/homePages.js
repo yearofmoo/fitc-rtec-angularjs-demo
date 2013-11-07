@@ -1,4 +1,4 @@
-angular.module('myApp.homePages', ['myApp.config', 'myApp.channels','myApp.utils', 'ngRoute'])
+angular.module('myApp.homePages', ['myApp.config', 'myApp.channels','myApp.pusher','myApp.utils', 'ngRoute'])
 
   .config(function($routeProvider, TPL_PATH) {
     $routeProvider.when('/', {
@@ -7,11 +7,7 @@ angular.module('myApp.homePages', ['myApp.config', 'myApp.channels','myApp.utils
     });
   })
 
-  .controller('HomeCtrl', function($scope, $http, API_PATH, userChannel, modifyCollection, commentChannel) {
-    $http.get(API_PATH + '/featured_users?limit=1')
-      .success(function(data) {
-        $scope.featured_user = data.featured_users[0];
-      });
+  .controller('HomeCtrl', function($scope, $http, API_PATH, userChannel, modifyCollection, commentChannel, pusherChannel) {
 
 
     // USERS
@@ -21,7 +17,7 @@ angular.module('myApp.homePages', ['myApp.config', 'myApp.channels','myApp.utils
       });
     userChannel.bind('create', function(user) {
       $scope.$apply(function() {
-        $scope.users.push(user);
+        $scope.users.unshift(user);
       });
     });
     userChannel.bind('destroy', function(user) {
@@ -51,4 +47,35 @@ angular.module('myApp.homePages', ['myApp.config', 'myApp.channels','myApp.utils
         $scope.comments = modifyCollection($scope.comments, comment, 'update');
       });
     });
+  })
+
+  .directive('featuredUser', function($http, userChannel, $templateCache, $compile, API_PATH) {
+    return function($scope, element, attrs) {
+      function downloadFeaturedUser() {
+        $http.get(API_PATH + '/featured_users?limit=1')
+          .success(function(data) {
+            $scope.featured_user = data.featured_users[0];
+          });
+      }
+
+      downloadFeaturedUser();
+      userChannel.bind('featured-add', function(user) {
+        $scope.$apply(function() {
+          $scope.featured_user = user;
+        });
+      });
+      userChannel.bind('featured-remove', function(user) {
+        $scope.$apply(function() {
+          downloadFeaturedUser();
+        });
+      });
+
+      var tpl = $templateCache.get('featured-user');
+      $scope.$watch('featured_user.id', function() {
+        var container = angular.element(tpl);
+        element.html('');
+        element.append(container);
+        $compile(container)($scope);
+      });
+    };
   });
