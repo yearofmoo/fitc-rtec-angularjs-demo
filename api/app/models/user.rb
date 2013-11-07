@@ -18,17 +18,21 @@ class User < ActiveRecord::Base
   after_save :pusher_update
   after_destroy :pusher_destroy
 
+  def skip_pusher(bool)
+    @skip_pusher = bool
+  end
+
   def pusher_create
-    AppPusher.send('user', 'create', self.to_json)
+    AppPusher.send('user', 'create', self.to_json) unless @skip_pusher == true
   end
 
   def pusher_update
     AppPusher.send('user', 'update', self.to_json)
-    AppPusher.send('user/' + self.id.to_s, 'update', self.to_json)
+    AppPusher.send('user/' + self.id.to_s, 'update', self.to_json) unless @skip_pusher == true
   end
 
   def pusher_destroy
-    AppPusher.send('user', 'destroy', self.to_json)
+    AppPusher.send('user', 'destroy', self.to_json) unless @skip_pusher == true
   end
 
   def featured?

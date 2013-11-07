@@ -19,6 +19,7 @@ i = 0
 users.each do |user|
   u = User.new(user)
   u.avatar = File.open(user_avatars.sample)
+  u.skip_pusher(true)
   if u.save
     puts "#{i} user: #{u.id} created"
   else
@@ -52,6 +53,8 @@ comments.each do |comment|
     :user_id => user_id,
     :visitor_id => visitor_id
   })
+
+  c.skip_pusher(true)
 
   if c.save
     puts "#{i} comment: #{c.id} created"
