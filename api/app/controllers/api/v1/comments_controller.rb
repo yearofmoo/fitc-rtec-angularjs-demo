@@ -6,6 +6,7 @@ class Api::V1::CommentsController < Api::V1::BaseController
     else 
       @comments = Comment.scoped
     end
+    @comments = @comments.limit(params[:limit]) if params[:limit].present?
   end
 
 end

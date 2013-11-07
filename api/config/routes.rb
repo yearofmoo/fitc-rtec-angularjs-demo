@@ -15,6 +15,7 @@ AngularRailsApp::Application.routes.draw do
         resources :comments, :only => [:index]
       end
       resources :comments, :only => [:index]
+      resources :featured_users, :only => [:index]
     end
   end
 

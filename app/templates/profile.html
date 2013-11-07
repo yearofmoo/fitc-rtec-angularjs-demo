@@ -1,6 +1,10 @@
+<div class="search-toggles">
+  <div class="row">
+    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+  </div>
+</div>
 <div class="row">
   <div>
-    <h4>{{ user.first_name }} {{ user.last_name }}</h4>
     <img ng-src="{{ user.avatar.large }}" />
     <ul class="user-details">
       <li>
@@ -17,7 +21,13 @@
       {{ user.info }}
     </p>
   </div>
-
+</div>
+<div class="search-toggles">
+  <div class="row">
+    <h3>New Comments</h3>
+  </div>
+</div>
+<div class="row">
   <div ng-repeat="comment in comments" class="comment-listing">
     <h4>
       <a ng-href="#/users/{{ comment.user.id }}">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>

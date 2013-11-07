@@ -20,3 +20,14 @@
   background:#eee;
   margin-bottom:2em;
 }
+.section { 
+  padding-bottom:2em;
+}
+sub {
+  font-size:15px;
+  vertical-align:top;
+  background:#999;
+  color:maroon;
+  padding:3px 10px;
+  border-radius:5px;
+}

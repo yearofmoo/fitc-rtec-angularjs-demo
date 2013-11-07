@@ -8,12 +8,17 @@ angular.module('myApp.homePages', ['myApp.config', 'ngRoute'])
   })
 
   .controller('HomeCtrl', function($scope, $http, API_PATH) {
-    $http.get(API_PATH + '/users')
+    $http.get(API_PATH + '/featured_users?limit=1')
+      .success(function(data) {
+        $scope.featured_user = data.featured_users[0];
+      });
+
+    $http.get(API_PATH + '/users?limit=6')
       .success(function(data) {
         $scope.users = data.users;
       });
 
-    $http.get(API_PATH + '/comments')
+    $http.get(API_PATH + '/comments?limit=5')
       .success(function(data) {
         $scope.comments = data.comments;
       });

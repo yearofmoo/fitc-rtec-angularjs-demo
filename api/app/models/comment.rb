@@ -7,20 +7,23 @@ class Comment < ActiveRecord::Base
   belongs_to :visitor,
     :class_name => 'User'
 
-  after_save :publish_to_pusher
-  after_destroy :publish_all_to_pusher
+  after_create :pusher_create
+  after_save :pusher_update
+  after_destroy :pusher_destroy
 
-  def self.find_user_comments(user_id)
-    Comment.where(:user_id => user_id)
+  def pusher_create
+    AppPusher.send('comment', 'create', self.to_json)
+    AppPusher.send('user/' + self.user_id.to_s + '/comments', 'create', self.to_json)
   end
 
-  def publish_to_pusher
-    #AppPusher.send('users/' + self.user_id.to_s + '/comments', Comment.find_user_comments(self.user_id).to_json)
-    #publish_all_to_pusher
+  def pusher_update
+    AppPusher.send('comment', 'update', self.to_json)
+    AppPusher.send('user/' + self.user_id.to_s + '/comments', 'destroy', self.to_json)
   end
 
-  def publish_all_to_pusher
-    #AppPusher.send('comments', Comment.scoped.to_json)
+  def pusher_destroy
+    AppPusher.send('comment', 'destroy', self.to_json)
+    AppPusher.send('user/' + self.user_id.to_s + '/comments', 'update', self.to_json)
   end
 
 end
