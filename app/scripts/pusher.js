@@ -1,4 +1,4 @@
-angular.module('myApp.pusher', [])
+angular.module('myApp.pusher', ['myApp.config'])
 
   .value('PUSHER_ID', '8775f81254810188bcfd')
 
@@ -6,8 +6,17 @@ angular.module('myApp.pusher', [])
     return new Pusher(PUSHER_ID);
   })
 
-  .factory('pusherChannel', function(pusherInstance) {
-    return function(channel) {
-      return pusherInstance.subscribe(channel);
+  .factory('pusherChannel', function(pusherInstance, myAppInTest) {
+    if(myAppInTest === true) {
+      return function(channel) {
+        return {
+          bind : angular.noop
+        }
+      }
+    }
+    else {
+      return function(channel) {
+        return pusherInstance.subscribe(channel);
+      }
     }
   });

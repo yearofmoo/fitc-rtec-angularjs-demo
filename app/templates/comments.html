@@ -1,3 +1,13 @@
+<div class="search-toggles">
+  <div class="row">
+    <div class="three columns">
+      {{ comments.length }} comments found
+    </div>
+    <div class="nine columns align-right">
+      <input type="search" ng-model="q" />
+    </div>
+  </div>
+</div>
 <div class="row">
   <div ng-repeat="comment in comments" class="comment-listing">
     <h4>

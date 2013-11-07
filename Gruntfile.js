@@ -138,9 +138,6 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      options : {
-        livereload: 7777
-      },
       assets: {
         files: ['app/styles/**/*.css','app/scripts/**/*.js'],
         tasks: ['concat']
@@ -190,12 +187,12 @@ module.exports = function(grunt) {
   //single run tests
   grunt.registerTask('test', ['test:unit', 'test:e2e']);
   grunt.registerTask('test:unit', ['karma:unit']);
-  grunt.registerTask('test:e2e', ['connect:testserver','protractor:singlerun']);
+  grunt.registerTask('test:e2e', ['update','configureProxies','connect:testserver','protractor:singlerun']);
 
   //autotest and watch tests
   grunt.registerTask('autotest', ['karma:unit_auto']);
   grunt.registerTask('autotest:unit', ['karma:unit_auto']);
-  grunt.registerTask('autotest:e2e', ['connect:testserver','shell:selenium','watch:protractor']);
+  grunt.registerTask('autotest:e2e', ['update','configureProxies','connect:testserver','shell:selenium','watch:protractor']);
 
   //coverage testing
   grunt.registerTask('test:coverage', ['karma:unit_coverage']);
