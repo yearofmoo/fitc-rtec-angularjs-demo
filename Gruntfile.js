@@ -110,6 +110,7 @@ module.exports = function(grunt) {
         dest: './app/assets/app.css',
         src: [
           'bower_components/gumby/css/gumby.css',
+          'app/styles/animations.css',
           'app/styles/app.css'
         ]
       },

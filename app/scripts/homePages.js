@@ -26,7 +26,6 @@ angular.module('myApp.homePages', ['myApp.config', 'myApp.channels','myApp.pushe
       });
     });
 
-
     // COMMENTS
     $http.get(API_PATH + '/comments?limit=5')
       .success(function(data) {

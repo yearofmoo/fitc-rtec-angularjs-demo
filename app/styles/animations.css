@@ -1,0 +1,21 @@
+.animate-listing {
+  transition:0.5s linear all;
+}
+
+.animate-listing.ng-enter {
+  max-width:0;
+  opacity:0;
+}
+.animate-listing.ng-enter-active {
+  max-width:300px;
+  opacity:1;
+}
+
+.animate-listing.ng-leave {
+  max-width:300px;
+  opacity:1;
+}
+.animate-listing.ng-leave-active {
+  max-width:0;
+  opacity:0;
+}

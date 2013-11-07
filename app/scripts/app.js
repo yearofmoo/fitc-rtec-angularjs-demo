@@ -1,1 +1,1 @@
-angular.module('myApp', ['myApp.homePages','myApp.profilePages','myApp.commentPages']);
+angular.module('myApp', ['ngAnimate','myApp.homePages','myApp.profilePages','myApp.commentPages']);
