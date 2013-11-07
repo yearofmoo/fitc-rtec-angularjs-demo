@@ -1,0 +1,54 @@
+<!DOCTYPE html> 
+<html ng-app="App">
+  <head>
+    <title>Pusher Test</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://code.angularjs.org/snapshot/angular.js" type="text/javascript"></script>
+    <script src="http://js.pusher.com/2.1/pusher.min.js" type="text/javascript"></script>
+  </head>
+  <body ng-controller="ColorsCtrl">
+    <ul>
+      <li ng-repeat="color in colors | primaryColors:showOnlyPrimaryColors">
+        {{ color }}
+      </li>
+    </ul>
+
+    <script type="text/javascript">
+      angular.module('App', [])
+        .constant('PRIMARY_COLORS', ['red','yellow','blue'])
+        .factory('pusherChannel', function() {
+          var pusher = new Pusher('8775f81254810188bcfd');
+          var channel = pusher.subscribe('basic');
+          return channel;
+        })
+        .controller('ColorsCtrl', function($scope, pusherChannel) {
+          $scope.colors = ['red','blue','green'];
+          pusherChannel.bind('colors', function(data) {
+            $scope.$apply(function() {
+              $scope.colors = data.colors;
+            });
+          });
+          pusherChannel.bind('config', function(data) {
+            $scope.$apply(function() {
+              $scope.showOnlyPrimaryColors = data.primaryColors;
+            });
+          });
+        })
+        .filter('primaryColors', function(PRIMARY_COLORS) {
+          return function(colors, onlyShowPrimaryColors) {
+            if(onlyShowPrimaryColors) {
+              var newColors = [];
+              angular.forEach(colors, function(color) {
+                if(PRIMARY_COLORS.indexOf(color) >= 0) {
+                  newColors.push(color);
+                }
+              });
+              return newColors;
+            }
+            return colors;
+          };
+        });
+    
+    </script>
+  </body>
+</html>
