@@ -1,0 +1,14 @@
+.DS_Store
+.agignore
+node_modules
+bower_components
+/selenium
+/coverage
+/app/assets
+/api/.bundle
+/api/Gemfile.lock
+/api/log/*.log
+/api/tmp
+/api/db/development.sqlite3
+libpeerconnection.log
+npm-debug.log

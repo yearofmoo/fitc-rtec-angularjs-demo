@@ -1,0 +1,9 @@
+source 'https://rubygems.org'
+gem 'rails', '4.0.1'
+gem 'sqlite3'
+gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'jbuilder', '~> 1.2'
+gem 'rails_admin'
+gem "devise"
+gem 'pusher'
+gem "devise"

@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <title>Pusher Test</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://js.pusher.com/2.1/pusher.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var pusher = new Pusher('8775f81254810188bcfd');
+      var channel = pusher.subscribe('basic');
+
+
+      $(function() {
+        updateColors(['red','blue','green']);
+        channel.bind('colors', function(data) {
+          updateColors(data.colors);
+        });
+
+        function updateColors(colors) {
+          var html, colorsElm = $('#colors');
+          for(var i=0;i<colors.length;i++) {
+            html += '<li>' + colors[i] + '</li>';
+          }
+          colorsElm.innerHTML = html;
+        }
+
+        channel.bind('config', function(data) {
+          updateColors(oldColors, data.primaryColors);
+        });
+
+        var oldColors;
+        function updateColors(colors, primary) {
+          var html = '', colorsElm = $('#colors');
+          for(var i=0;i<colors.length;i++) {
+            var color = colors[i];
+            if(!primary || ['red','yellow','blue'].indexOf(color) >= 0) {
+              html += '<li>' + color + '</li>';
+            }
+          }
+          oldColors = colors;
+          colorsElm.html(html);
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <ul id="colors"></ul>
+  </body>
+</html>
