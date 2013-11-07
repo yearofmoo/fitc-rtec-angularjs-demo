@@ -17,6 +17,9 @@ module.exports = function(grunt) {
       options: {
         stdout: true
       },
+      gumby_fonts: {
+        command: 'cp -R bower_components/gumby/fonts app/'
+      },
       selenium: {
         command: './selenium/start',
         options: {
@@ -98,7 +101,8 @@ module.exports = function(grunt) {
       styles: {
         dest: './app/assets/app.css',
         src: [
-          'app/styles/app.css',
+          'bower_components/gumby/css/gumby.css',
+          'app/styles/app.css'
         ]
       },
       scripts: {
@@ -107,9 +111,11 @@ module.exports = function(grunt) {
         },
         dest: './app/assets/app.js',
         src: [
-          'lib/angular-1.2.0/angular.js',
-          'lib/angular-1.2.0/angular-route.js',
-          'lib/angular-1.2.0/angular-animate.js',
+          'lib/angularjs-1.2.0/angular.js',
+          'lib/angularjs-1.2.0/angular-route.js',
+          'lib/angularjs-1.2.0/angular-animate.js',
+          'app/scripts/config.js',
+          'app/scripts/homePages.js',
           'app/scripts/app.js',
         ]
       },
@@ -181,7 +187,7 @@ module.exports = function(grunt) {
 
   //installation-related
   grunt.registerTask('install', ['update','shell:protractor_install']);
-  grunt.registerTask('update', ['shell:npm_install','shell:bower_install', 'concat']);
+  grunt.registerTask('update', ['shell:npm_install','shell:bower_install', 'shell:gumby_fonts', 'concat']);
 
   //defaults
   grunt.registerTask('default', ['dev']);

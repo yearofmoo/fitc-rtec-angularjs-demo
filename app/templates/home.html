@@ -1,1 +1,17 @@
-{{ welcome_message }}
+<div ng-repeat="user in users" class="user-listing">
+  <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+  <ul class="user-details">
+    <li>
+      Location: {{ user.location }}
+    </li>
+    <li>
+      Age: {{ user.age }}
+    </li>
+    <li>
+      Email: {{ user.email }}
+    </li>
+  </ul>
+  <p>
+    {{ user.info }}
+  </p>
+</div>

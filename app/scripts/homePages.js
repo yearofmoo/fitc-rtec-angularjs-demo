@@ -1,11 +1,15 @@
-angular.module('app.homePages', [])
+angular.module('myApp.homePages', ['myApp.config', 'ngRoute'])
 
-  .factory('welcomeMessage', function() {
-    return function() {
-      return 'Welcome Home...';
-    };
+  .config(function($routeProvider, TPL_PATH) {
+    $routeProvider.when('/', {
+      controller: 'HomeCtrl',
+      templateUrl : TPL_PATH + '/home.html'
+    });
   })
 
-  .controller('HomeCtrl', function($scope, welcomeMessage) {
-    $scope.welcome_message = welcomeMessage();
+  .controller('HomeCtrl', function($scope, $http, API_PATH) {
+    $http.get(API_PATH + '/users')
+      .success(function(data) {
+        $scope.users = data.users;
+      });
   });

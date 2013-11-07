@@ -11,7 +11,7 @@ AngularRailsApp::Application.routes.draw do
   #
   namespace :api, defaults: {format: 'json'}  do
     namespace :v1 do
-      resource :users, :only => [:show]
+      resources :users, :only => [:index, :show]
     end
   end
 
@@ -20,6 +20,5 @@ AngularRailsApp::Application.routes.draw do
   #
   root :to => 'home#index'
   get '/' => 'home#index', :as => :home
-  get '*path' => 'home#index'
 
 end
