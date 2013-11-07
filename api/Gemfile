@@ -7,3 +7,4 @@ gem 'rails_admin'
 gem "devise"
 gem 'pusher'
 gem "devise"
+gem "paperclip", "~> 3.0"

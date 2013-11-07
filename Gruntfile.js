@@ -49,13 +49,21 @@ module.exports = function(grunt) {
         }
       },
       proxies: [{
-        context: '/api',
-        host: 'localhost',
-        port: 3000,
-        rewrite: {
-          '/api(.+)': '/api/$1'
+          context: '/api',
+          host: 'localhost',
+          port: 3000,
+          rewrite: {
+            '/api(.+)': '/api/$1'
+          }
+        },{
+          context: '/storage',
+          host: 'localhost',
+          port: 6666,
+          rewrite: {
+            '/storage(.+)': '/$1'
+          }
         }
-      }],
+      ],
       webserver: {
         options: {
           port: 8888,
