@@ -6,7 +6,7 @@
 <div class="row section" ng-if="featured_user">
   <div>
     <a href="#/users/{{ featured_user.id }}">
-      <img ng-src="{{ featured_user.avatar.large }}" />
+      <img ng-src="{{ featured_user.picture.large }}" />
     </a>
     <ul class="user-details">
       <li>
@@ -32,7 +32,7 @@
 <div class="row section">
   <div ng-repeat="user in users" class="avatar-listing">
     <a ng-href="#/users/{{ user.id }}">
-      <img ng-src="{{ user.avatar.medium }}" />
+      <img ng-src="{{ user.picture.medium }}" />
     </a>
   </div>
 </div>
@@ -44,12 +44,12 @@
 <div class="row section">
   <div ng-repeat="comment in comments" class="comment-listing">
     <h4>
-      <a ng-href="#/users/{{ comment.user.id }}">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
+      {{ comment.id }} - <a ng-href="#/users/{{ comment.user.id }}">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
       <sub>
         to {{ comment.user.first_name }} {{ comment.user.last_name }}
       </sub>
     </h4>
-    <img ng-src="{{ comment.visitor.avatar.thumb }}" />
+    <img ng-src="{{ comment.visitor.picture.thumb }}" />
     <p>
       {{ comment.message }}
     </p>

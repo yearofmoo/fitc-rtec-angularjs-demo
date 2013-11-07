@@ -8,6 +8,6 @@ angular.module('myApp.channels', ['myApp.pusher'])
     return pusherChannel('user');
   })
 
-  .factory('commentsChannel', function(pusherChannel) {
+  .factory('commentChannel', function(pusherChannel) {
     return pusherChannel('comment');
   });

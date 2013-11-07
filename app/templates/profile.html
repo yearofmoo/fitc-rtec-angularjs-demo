@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div>
-    <img ng-src="{{ user.avatar.large }}" />
+    <img ng-src="{{ user.picture.large }}" />
     <ul class="user-details">
       <li>
         Location: {{ user.location }}
@@ -32,7 +32,7 @@
     <h4>
       <a ng-href="#/users/{{ comment.user.id }}">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
     </h4>
-    <img ng-src="{{ comment.visitor.avatar.thumb }}" />
+    <img ng-src="{{ comment.visitor.picture.thumb }}" />
     <p>
       {{ comment.user.first_name }} {{ comment.user.last_name }} to
       {{ comment.visitor.first_name }} {{ comment.visitor.last_name }}

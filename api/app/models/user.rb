@@ -18,21 +18,34 @@ class User < ActiveRecord::Base
   after_save :pusher_update
   after_destroy :pusher_destroy
 
+  def picture
+    options = {
+      :large => self.avatar.url(:large),
+      :medium => self.avatar.url(:medium),
+      :thumb => self.avatar.url(:thumb),
+      :original => self.avatar.url(:original)
+    }
+  end
+
+  def to_listing_json
+    self.to_json(:methods => :picture)
+  end
+
   def skip_pusher(bool)
     @skip_pusher = bool
   end
 
   def pusher_create
-    AppPusher.send('user', 'create', self.to_json) unless @skip_pusher == true
+    AppPusher.send('user', 'create', self.to_listing_json) unless @skip_pusher == true
   end
 
   def pusher_update
     AppPusher.send('user', 'update', self.to_json)
-    AppPusher.send('user/' + self.id.to_s, 'update', self.to_json) unless @skip_pusher == true
+    AppPusher.send('user/' + self.id.to_s, 'update', self.to_listing_json) unless @skip_pusher == true
   end
 
   def pusher_destroy
-    AppPusher.send('user', 'destroy', self.to_json) unless @skip_pusher == true
+    AppPusher.send('user', 'destroy', self.to_listing_json) unless @skip_pusher == true
   end
 
   def featured?

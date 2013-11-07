@@ -127,6 +127,7 @@ module.exports = function(grunt) {
           'app/scripts/config.js',
           'app/scripts/pusher.js',
           'app/scripts/channels.js',
+          'app/scripts/utils.js',
           'app/scripts/homePages.js',
           'app/scripts/profilePages.js',
           'app/scripts/commentPages.js',
