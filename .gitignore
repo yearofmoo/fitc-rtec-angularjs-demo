@@ -11,5 +11,6 @@ bower_components
 /api/tmp
 /api/db/development.sqlite3
 /api/public
+/app/font
 libpeerconnection.log
 npm-debug.log

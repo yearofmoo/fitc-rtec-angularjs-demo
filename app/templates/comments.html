@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="row">
-  <div ng-repeat="comment in comments" class="comment-listing">
+  <div ng-repeat="comment in comments | limit:20 | filter:q" class="comment-listing animate-comment">
     <h4>
       <a ng-href="#/users/{{ comment.user.id }}">{{ comment.visitor.first_name }} {{ comment.visitor.last_name }}</a>
       <sub>

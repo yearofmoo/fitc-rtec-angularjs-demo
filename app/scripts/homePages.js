@@ -11,7 +11,7 @@ angular.module('myApp.homePages', ['myApp.config', 'myApp.channels','myApp.pushe
 
 
     // USERS
-    $http.get(API_PATH + '/users?limit=6')
+    $http.get(API_PATH + '/users?limit=18')
       .success(function(data) {
         $scope.users = data.users;
       });
@@ -27,7 +27,7 @@ angular.module('myApp.homePages', ['myApp.config', 'myApp.channels','myApp.pushe
     });
 
     // COMMENTS
-    $http.get(API_PATH + '/comments?limit=5')
+    $http.get(API_PATH + '/comments?limit=20')
       .success(function(data) {
         $scope.comments = data.comments;
       });

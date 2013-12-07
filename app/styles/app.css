@@ -1,7 +1,10 @@
 .navbar {
   margin-bottom:0;
+  position:relative;
+  z-index:1000;
 }
 .avatar-listing {
+  width:32%;
   float:left; 
   border:1px solid #ddd;
   margin:2px;
@@ -30,4 +33,35 @@ sub {
   color:maroon;
   padding:3px 10px;
   border-radius:5px;
+}
+#view-container {
+  position:relative;
+}
+.comment-listing {
+  padding:10px;
+}
+.comment-listing:hover,
+.avatar-listing:hover {
+  box-shadow:0 0 5px #999;
+}
+.placeholder-user-image {
+  position:relative;
+  background:black;
+  width:100%;
+  height:100%;
+}
+.placeholder-user-image img {
+  position:relative;
+  z-index:100;
+}
+.placeholder-loading-animation {
+  font-size:60px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  display:block;
+  width:40px;
+  height:40px;
+  margin-top:-20px;
+  margin-left:-20px;
 }

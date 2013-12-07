@@ -21,7 +21,7 @@
 </script>
 <div class="search-toggles">
   <div class="row">
-    <h3>Featured Users</h3>
+    <h3>Featured User</h3>
   </div>
 </div>
 <div class="row section" featured-user></div>
@@ -32,8 +32,9 @@
   </div>
 </div>
 <div class="row section">
-  <div ng-repeat="user in users" class="avatar-listing">
-    <a ng-href="#/users/{{ user.id }}">
+  <div ng-repeat="user in users | limit:6 track by user.id" class="avatar-listing expand-horizontally">
+    <a ng-href="#/users/{{ user.id }}" class="placeholder-user-image">
+      <span class="fa fa-spinner fa-spin placeholder-loading-animation"></span>
       <img ng-src="{{ user.picture.medium }}" />
     </a>
   </div>
@@ -44,7 +45,7 @@
   </div>
 </div>
 <div class="row section">
-  <div ng-repeat="comment in comments" class="comment-listing">
+  <div ng-repeat="comment in comments | limit:5" class="comment-listing animate-comment">
     <h4>
       {{ comment.id }} - <a ng-href="#/users/{{ comment.user.id }}">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
       <sub>

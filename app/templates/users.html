@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="row">
-  <div ng-repeat="user in users | filter:q" class="avatar-listing animate-listing">
+  <div ng-repeat="user in users | limit:24 | filter:q" class="avatar-listing animate-listing">
     <a ng-href="#/users/{{ user.id }}">
       <img ng-src="{{ user.picture.medium }}" />
     </a>

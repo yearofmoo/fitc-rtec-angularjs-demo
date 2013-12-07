@@ -1,5 +1,11 @@
 angular.module('myApp.utils', [])
 
+  .filter('limit', function() {
+    return function(results, limit) {
+      return results && results.slice(0, limit);
+    }
+  })
+
   .factory('modifyCollection', function() {
     return function(collection, newItem, action) {
       var newCollection = [];
