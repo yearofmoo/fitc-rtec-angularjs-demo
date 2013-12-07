@@ -4,7 +4,7 @@ describe('myApp', function() {
 
   it('should load the homepage', function() {
     ptor.get('/#');
-    expect($('#view-container').getText()).toContain('Featured Users');
+    expect($('#view-container').getText()).toContain('Featured User');
   });
 
   it('should load the users', function() {

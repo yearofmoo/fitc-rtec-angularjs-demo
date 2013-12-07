@@ -42,13 +42,19 @@
         });
     
     </script>
+    <style>
+      .color-red { color:red; }
+      .color-blue { color:blue; }
+      .color-yellow { color:yellow; }
+      .color-green { color:green; }
+    </style>
   </head>
 
   <body ng-controller="ColorsCtrl">
 
     <ul>
       <li ng-repeat="color in colors | primaryColors:showOnlyPrimaryColors">
-        {{ color }}
+        <span class="color-{{ color }}">{{ color }}</span>
       </li>
     </ul>
 
