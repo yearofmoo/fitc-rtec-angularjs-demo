@@ -119,9 +119,9 @@ module.exports = function(grunt) {
         },
         dest: './app/assets/app.js',
         src: [
-          'lib/angularjs-1.2.0/angular.js',
-          'lib/angularjs-1.2.0/angular-route.js',
-          'lib/angularjs-1.2.0/angular-animate.js',
+          'bower_components/angular/angular.js',
+          'bower_components/angular-animate/angular-animate.js',
+          'bower_components/angular-route/angular-route.js',
           'app/scripts/config.js',
           'app/scripts/homePages.js',
           'app/scripts/profilePages.js',

@@ -1,6 +1,11 @@
 {
-  "name": "StrangeLoop-AngularJS",
+  "name": "FITC-Real-Time-Eye-Candy-with-AnguarJS",
+  "version": "0.0.1",
   "dependencies": {
+    "angular": "1.2.4",
+    "angular-route": "1.2.4",
+    "angular-mocks": "1.2.4",
+    "angular-animate": "1.2.4",
     "gumby": "~2.4.11",
     "jquery": "~2.0.3"
   }
