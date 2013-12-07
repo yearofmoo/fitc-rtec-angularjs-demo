@@ -48,7 +48,7 @@ angular.module('myApp.homePages', ['myApp.config', 'myApp.channels','myApp.pushe
     });
   })
 
-  .directive('featuredUser', function($http, userChannel, $templateCache, $compile, API_PATH) {
+  .directive('featuredUser', function($http, userChannel, $templateCache, $compile, $animate, API_PATH) {
     return function($scope, element, attrs) {
       function downloadFeaturedUser() {
         $http.get(API_PATH + '/featured_users?limit=1')
@@ -70,11 +70,15 @@ angular.module('myApp.homePages', ['myApp.config', 'myApp.channels','myApp.pushe
       });
 
       var tpl = $templateCache.get('featured-user');
-      $scope.$watch('featured_user.id', function() {
-        var container = angular.element(tpl);
-        element.html('');
-        element.append(container);
-        $compile(container)($scope);
+      var userID;
+      $scope.$watch('featured_user.id', function(id) {
+        if(id != userID) {
+          element.html('');
+          var container = angular.element(tpl);
+          $compile(container)($scope);
+          $animate.enter(container, element);
+          userID = id;
+        }
       });
     };
   });

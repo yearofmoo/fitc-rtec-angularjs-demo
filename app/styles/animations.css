@@ -47,12 +47,12 @@
   opacity:0;
 }
 
-.animate-view.ng-enter {
+.fade-animation.ng-enter {
   transition:0.5s linear all;
   opacity:0.5;
 }
 
-.animate-view.ng-enter.ng-enter-active {
+.fade-animation.ng-enter.ng-enter-active {
   opacity:1;
 }
 
@@ -69,4 +69,15 @@
 .expand-horizontally.ng-leave.ng-leave-active {
   width:0%;
   opacity:0;
+}
+
+.reveal-animation.ng-enter {
+  transition:0.5s cubic-bezier(0.42,0,0.58,1) all;
+  max-height:0;
+  opacity:0;
+}
+
+.reveal-animation.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:600px;
 }
