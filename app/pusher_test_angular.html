@@ -3,16 +3,8 @@
   <head>
     <title>Pusher Test</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://code.angularjs.org/snapshot/angular.js" type="text/javascript"></script>
+    <script src="http://code.angularjs.org/1.2.4/angular.js" type="text/javascript"></script>
     <script src="http://js.pusher.com/2.1/pusher.min.js" type="text/javascript"></script>
-  </head>
-  <body ng-controller="ColorsCtrl">
-    <ul>
-      <li ng-repeat="color in colors | primaryColors:showOnlyPrimaryColors">
-        {{ color }}
-      </li>
-    </ul>
-
     <script type="text/javascript">
       angular.module('App', [])
         .constant('PRIMARY_COLORS', ['red','yellow','blue'])
@@ -50,5 +42,15 @@
         });
     
     </script>
+  </head>
+
+  <body ng-controller="ColorsCtrl">
+
+    <ul>
+      <li ng-repeat="color in colors | primaryColors:showOnlyPrimaryColors">
+        {{ color }}
+      </li>
+    </ul>
+
   </body>
 </html>

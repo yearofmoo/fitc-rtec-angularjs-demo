@@ -8,20 +8,19 @@
       var pusher = new Pusher('8775f81254810188bcfd');
       var channel = pusher.subscribe('basic');
 
+      /*
+         Sample Data (colors event)
+         { "colors" : ["red","blue","green", "orange", "purple", "cyan"] }
+
+         Sample Data (config event)
+         { "primaryColors" : true }
+      */
 
       $(function() {
         updateColors(['red','blue','green']);
         channel.bind('colors', function(data) {
           updateColors(data.colors);
         });
-
-        function updateColors(colors) {
-          var html, colorsElm = $('#colors');
-          for(var i=0;i<colors.length;i++) {
-            html += '<li>' + colors[i] + '</li>';
-          }
-          colorsElm.innerHTML = html;
-        }
 
         channel.bind('config', function(data) {
           updateColors(oldColors, data.primaryColors);
