@@ -119,10 +119,10 @@ module.exports = function(grunt) {
         },
         dest: './app/assets/app.js',
         src: [
+          'bower_components/jquery/jquery.js',
           'bower_components/angular/angular.js',
           'bower_components/angular-animate/angular-animate.js',
           'bower_components/angular-route/angular-route.js',
-          'bower_components/jquery/jquery.js',
           'bower_components/pusher/dist/pusher.js',
           'app/scripts/config.js',
           'app/scripts/pusher.js',
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
           'app/scripts/homePages.js',
           'app/scripts/profilePages.js',
           'app/scripts/commentPages.js',
-          'app/scripts/app.js',
+          'app/scripts/app.js'
         ]
       }
     },
